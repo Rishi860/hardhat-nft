@@ -23,16 +23,14 @@ const {
 			describe("constructor", () => {
 				it("sets starting values correctlyy", async function () {
 					const dogTokenUriZero = await randomIpfsNft.getDogTokenUris(0);
-					const isInitialized = await randomIpfsNft.getInitialized();
 					assert(dogTokenUriZero.includes("ipfs://"));
-					assert.equal(isInitialized, true);
 				});
 			});
 
 			describe("requestNft", () => {
 				it("fails if payment isn't sent with the request", async function () {
 					await expect(randomIpfsNft.requestNft()).to.be.revertedWith(
-						"NeedMoreETHSent"
+						"RandomIpfsNft__NeedMoreEthSent"
 					);
 				});
 				it("emits an event and kicks off a random word request", async function () {
